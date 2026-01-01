@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+    <div id="app" class="w-full"></div>
+
+    <script type="module">
+        import { moneyTemplate, moneyLogic } from './src/components/money.js';
+        document.getElementById('app').innerHTML = moneyTemplate;
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('moneyConverter', moneyLogic);
+        });
+        window.Alpine.start();
+    </script>
+</body>
+</html>
