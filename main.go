@@ -12,7 +12,7 @@ func main() {
 	// Register all features
 	registry := feature.NewFeatureRegistry()
 	registry.Register(feature.NewCharacterAnalyzer())
-	registry.Register(feature.NewEconomyCalculator())
+	registry.Register(feature.NewTimezoneAnalyzer())
 	// registry.Register(NewWeatherForecast())
 	// ... register 100 features here
 
