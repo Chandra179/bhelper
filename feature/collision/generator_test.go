@@ -60,3 +60,49 @@ func TestTotalSpaceOverflow(t *testing.T) {
 		t.Errorf("Expected MaxUint64 for overflow case, got %d", space)
 	}
 }
+
+func TestBase62Generator(t *testing.T) {
+	gen, err := NewBase62Generator(10)
+	if err != nil {
+		t.Fatalf("NewBase62Generator failed: %v", err)
+	}
+	id := gen.Generate()
+	if len(id) != 10 {
+		t.Errorf("Expected length 10, got %d", len(id))
+	}
+
+	space := gen.TotalSpace()
+	expected := uint64(1)
+	for i := 0; i < 10; i++ {
+		expected *= 62
+	}
+	if space != expected {
+		t.Errorf("Expected %d, got %d", expected, space)
+	}
+
+	if gen.Name() != "base62" {
+		t.Errorf("Expected 'base62', got '%s'", gen.Name())
+	}
+}
+
+func TestSnowflakeGenerator(t *testing.T) {
+	gen, err := NewSnowflakeGenerator()
+	if err != nil {
+		t.Fatalf("NewSnowflakeGenerator failed: %v", err)
+	}
+	id1 := gen.Generate()
+	id2 := gen.Generate()
+
+	if id1 == id2 {
+		t.Error("Expected different IDs")
+	}
+
+	space := gen.TotalSpace()
+	if space == 0 {
+		t.Error("Expected non-zero space")
+	}
+
+	if gen.Name() != "snowflake" {
+		t.Errorf("Expected 'snowflake', got '%s'", gen.Name())
+	}
+}

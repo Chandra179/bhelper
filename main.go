@@ -2,6 +2,7 @@ package main
 
 import (
 	"bhelper/feature"
+	"bhelper/feature/collision"
 	"fmt"
 	"os"
 
@@ -13,6 +14,7 @@ func main() {
 	registry := feature.NewFeatureRegistry()
 	registry.Register(feature.NewCharacterAnalyzer())
 	registry.Register(feature.NewTimezoneAnalyzer())
+	registry.Register(collision.NewCollisionAnalyzer())
 	// registry.Register(NewWeatherForecast())
 	// ... register 100 features here
 
