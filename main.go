@@ -3,6 +3,7 @@ package main
 import (
 	"bhelper/feature"
 	"bhelper/feature/collision"
+	"bhelper/feature/gcmetrics"
 	"fmt"
 	"os"
 
@@ -15,6 +16,7 @@ func main() {
 	registry.Register(feature.NewCharacterAnalyzer())
 	registry.Register(feature.NewTimezoneAnalyzer())
 	registry.Register(collision.NewCollisionAnalyzer())
+	registry.Register(gcmetrics.NewMonitorFeature())
 	// registry.Register(NewWeatherForecast())
 	// ... register 100 features here
 
